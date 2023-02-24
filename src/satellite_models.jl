@@ -33,24 +33,11 @@ struct SatelliteModel
     max_dipoles::Vector{<:Real} # Am², the maximum dipole that can be produced along each axis
 end
 
-dove_faces = [
-    SatelliteFace(0.1^2, [0.0, 0.0, 1.0], [0.0, 0.0, 0.3 / 2]) # Top +Z
-    SatelliteFace(0.1^2, [0.0, 0.0, -1.0], [0.0, 0.0, -0.3 / 2]) # Bottom -Z
-    SatelliteFace(0.1 * 0.3, [0.0, 1.0, 0.0], [0.0, 0.05, 0.0]) # Side +Y
-    SatelliteFace(0.1 * 0.3, [0.0, -1.0, 0.0], [0.0, -0.05, 0.0]) # Side -Y
-    SatelliteFace(0.1 * 0.3, [1.0, 0.0, 0.0], [0.05, 0.0, 0.0]) # Side +X
-    SatelliteFace(0.1 * 0.3, [-1.0, 0.0, 0.0], [-0.05, 0.0, 0.0]) # Side -X
-    SatelliteFace(0.3 * 0.3, [1.0, 0.0, 0.0], [0.05, (0.05 + 0.3), 0.0]) # Solar 1 +X face
-    SatelliteFace(0.3 * 0.3, [-1.0, 0.0, 0.0], [0.05, (0.05 + 0.3), 0.0]) # Solar 1 -X face
-    SatelliteFace(0.3 * 0.3, [1.0, 0.0, 0.0], [0.05, -(0.05 + 0.3), 0.0]) # Solar 2 +X face
-    SatelliteFace(0.3 * 0.3, [-1.0, 0.0, 0.0], [0.05, -(0.05 + 0.3), 0.0]) # Solar 2 -X face
-]
-
 dove_model = SatelliteModel(
     6.0,
     diagm([1.0, 2.0, 3.0]),
     [0.0, 0.0, 0.0],
-    dove_faces,
+    [], # don't need faces for cartesian state sim
     2.2,
     0.1^2, # min area
     (2 * 0.3 * 0.3 + 0.1 * 0.3), # max area
